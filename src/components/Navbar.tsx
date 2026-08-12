@@ -34,7 +34,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 px-4 sm:px-8 py-4 flex items-center justify-between text-white font-sans pointer-events-auto bg-gradient-to-b from-black/60 to-transparent">
+    <header className="fixed top-0 left-0 right-0 z-40 px-2 sm:px-8 pt-8 pb-4 sm:py-4 flex items-center justify-between text-white font-sans pointer-events-auto bg-gradient-to-b from-black/60 to-transparent">
       {/* Top Left: Live Clock */}
       <div className="flex items-center gap-3">
         <span className="font-mono text-sm sm:text-base font-bold text-slate-200 tracking-wider">
@@ -44,7 +44,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Top Center: Brand Logo & Online Status */}
-      <div className="flex items-center gap-2.5">
+      <div className="flex items-center gap-1.5 sm:gap-2.5">
         <div className="flex items-center gap-1.5 bg-cyan-950/60 backdrop-blur-md px-3 py-1 rounded-full border border-cyan-500/30 shadow-[0_0_12px_rgba(6,182,212,0.2)] text-[10px] sm:text-xs font-mono">
           <Sparkles className="w-3 h-3 text-cyan-400 animate-pulse" />
           <span className="font-bold text-cyan-300 tracking-wider">@akramiyi</span>
@@ -57,7 +57,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Top Right: Spotify, YT Music & Cafe Controls */}
-      <div className="flex items-center gap-2 sm:gap-4 text-xs font-medium">
+      <div className="flex items-center gap-1.5 sm:gap-4 text-xs font-medium">
         {/* Spotify & YT Music Links */}
         <a
           href="https://open.spotify.com/playlist/2AVjI8Z57bqMJVtU3V9X1Q"

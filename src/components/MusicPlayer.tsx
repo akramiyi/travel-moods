@@ -409,8 +409,8 @@ export const MusicPlayer: React.FC = () => {
       )}
 
       {/* Floating Glassmorphic Music Bar */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[95%] sm:w-[80%] max-w-2xl z-40">
-        <div className="bg-gradient-to-r from-[#4a3b32]/95 to-[#933d35]/95 backdrop-blur-xl border border-white/10 rounded-full p-2 sm:p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex items-center justify-between gap-3 sm:gap-5 text-white transition-all duration-500">
+      <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 w-[98%] sm:w-[80%] max-w-2xl z-40">
+        <div className="bg-gradient-to-r from-[#4a3b32]/95 to-[#933d35]/95 backdrop-blur-xl border border-white/10 rounded-full p-2 sm:p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex items-center justify-between gap-1.5 sm:gap-5 text-white transition-all duration-500">
           
           {/* LEFT: Album Art */}
           <div className="flex-shrink-0 relative">
@@ -440,7 +440,7 @@ export const MusicPlayer: React.FC = () => {
           <div className="flex-1 flex flex-col justify-center min-w-0 pr-2">
             <div className="relative">
               <MagicDust isPlaying={isPlaying} />
-              <h3 className="font-bold text-sm sm:text-base truncate font-sans text-white tracking-wide">
+              <h3 className="font-bold text-[13px] sm:text-base truncate font-sans text-white tracking-wide leading-tight">
                 {currentTrack.title}
               </h3>
               <p className="text-[11px] sm:text-xs text-white/70 font-sans truncate mb-1.5">{currentTrack.artist}</p>
@@ -472,7 +472,7 @@ export const MusicPlayer: React.FC = () => {
           </div>
 
           {/* RIGHT: Controls */}
-          <div className="flex items-center gap-3 sm:gap-5 flex-shrink-0 pr-2 sm:pr-4">
+          <div className="flex items-center gap-1 sm:gap-5 flex-shrink-0 pr-1 sm:pr-4">
             {!hasUserInteracted && (
               <button
                 onClick={handleStartAudio}
@@ -483,19 +483,19 @@ export const MusicPlayer: React.FC = () => {
               </button>
             )}
 
-            <button onClick={handlePrev} className="text-white/70 hover:text-white transition-transform active:scale-90" title="Previous Song">
+            <button onClick={handlePrev} className="p-2 sm:p-0 text-white/70 hover:text-white transition-transform active:scale-90" title="Previous Song">
               <SkipBack className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
             </button>
 
             <button
               onClick={handlePlayPause}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-black flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-transform"
+              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white text-black flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-transform mx-1 sm:mx-0 shrink-0"
               title={isPlaying ? 'Pause' : 'Play'}
             >
               {isPlaying ? <Pause className="w-5 h-5 sm:w-6 sm:h-6 fill-current" /> : <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current ml-1" />}
             </button>
 
-            <button onClick={handleNext} className="text-white/70 hover:text-white transition-transform active:scale-90" title="Next Song">
+            <button onClick={handleNext} className="p-2 sm:p-0 text-white/70 hover:text-white transition-transform active:scale-90" title="Next Song">
               <SkipForward className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
             </button>
             
