@@ -43,18 +43,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
       </div>
 
-      {/* Brand Logo & Online Status (Centered on mobile 2nd row) */}
-      <div className="order-3 sm:order-2 w-full sm:w-auto flex justify-center items-center gap-1.5 sm:gap-2.5">
-        <div className="flex items-center gap-1.5 bg-cyan-950/60 backdrop-blur-md px-3 py-1 rounded-full border border-cyan-500/30 shadow-[0_0_12px_rgba(6,182,212,0.2)] text-[10px] sm:text-xs font-mono">
-          <Sparkles className="w-3 h-3 text-cyan-400 animate-pulse" />
-          <span className="font-bold text-cyan-300 tracking-wider">@akramiyi</span>
-        </div>
-        
-        <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 shadow-lg text-[10px] sm:text-xs font-mono">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#10b981]" />
-          <span className="text-slate-300 font-medium whitespace-nowrap">37 online</span>
-        </div>
-      </div>
+
 
       {/* Top Right: Spotify, YT Music */}
       <div className="order-2 sm:order-3 flex items-center gap-1.5 sm:gap-4 text-xs font-medium">

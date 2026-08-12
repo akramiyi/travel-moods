@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { TRACK_LIST } from '../data/cyberData';
-import { Play, Pause, SkipBack, SkipForward, Disc, ListMusic, Volume2, X, Shuffle, Timer, Minimize2, Maximize2 } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, Disc, ListMusic, Volume2, X, Shuffle, Timer, Minimize2, Maximize2, Sparkles } from 'lucide-react';
 import { retroAudio } from '../utils/audio';
 import { xaliPlaylist } from '../data/xaliPlaylist';
 
@@ -408,9 +408,24 @@ export const MusicPlayer: React.FC = () => {
         </div>
       )}
 
-      {/* Floating Glassmorphic Music Bar */}
-      <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 w-[98%] sm:w-[80%] max-w-2xl z-40">
-        <div className="bg-gradient-to-r from-[#4a3b32]/95 to-[#933d35]/95 backdrop-blur-xl border border-white/10 rounded-full p-2 sm:p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex items-center justify-between gap-1.5 sm:gap-5 text-white transition-all duration-500">
+      {/* Floating Glassmorphic Container for Badges and Music Bar */}
+      <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 w-[98%] sm:w-[80%] max-w-2xl z-40 flex flex-col gap-2">
+        
+        {/* Brand Logo & Online Status (Moved from Navbar) */}
+        <div className="flex justify-center items-center gap-1.5 sm:gap-2.5">
+          <div className="flex items-center gap-1.5 bg-cyan-950/60 backdrop-blur-md px-3 py-1 rounded-full border border-cyan-500/30 shadow-[0_0_12px_rgba(6,182,212,0.2)] text-[10px] sm:text-xs font-mono">
+            <Sparkles className="w-3 h-3 text-cyan-400 animate-pulse" />
+            <span className="font-bold text-cyan-300 tracking-wider">@akramiyi</span>
+          </div>
+          
+          <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 shadow-lg text-[10px] sm:text-xs font-mono">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#10b981]" />
+            <span className="text-slate-300 font-medium whitespace-nowrap">37 online</span>
+          </div>
+        </div>
+
+        {/* Music Bar */}
+        <div className="bg-gradient-to-r from-[#4a3b32]/95 to-[#933d35]/95 backdrop-blur-xl border border-white/10 rounded-full p-2 sm:p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex items-center justify-between gap-0.5 sm:gap-5 text-white transition-all duration-500 w-full">
           
           {/* LEFT: Album Art */}
           <div className="flex-shrink-0 relative">
