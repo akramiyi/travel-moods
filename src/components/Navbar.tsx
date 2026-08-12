@@ -25,11 +25,11 @@ export const Navbar: React.FC<NavbarProps> = ({
     const updateTime = () => {
       const now = new Date();
       setTimeString(
-        now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true }).toLowerCase()
+        now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true }).toLowerCase()
       );
     };
     updateTime();
-    const timer = setInterval(updateTime, 10000);
+    const timer = setInterval(updateTime, 1000);
     return () => clearInterval(timer);
   }, []);
 
@@ -66,7 +66,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-950/60 hover:bg-emerald-900/80 text-emerald-300 border border-emerald-500/30 transition-all hover:scale-105"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-400" />
-          <span className="font-semibold hidden sm:inline">Spotify</span>
+          <span className="font-semibold">Spotify</span>
           <ExternalLink className="w-3 h-3 opacity-70" />
         </a>
 
@@ -78,7 +78,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-950/60 hover:bg-red-900/80 text-red-300 border border-red-500/30 transition-all hover:scale-105"
         >
           <span className="w-2 h-2 rounded-full bg-red-400" />
-          <span className="font-semibold hidden sm:inline">YT Music</span>
+          <span className="font-semibold">YT Music</span>
           <ExternalLink className="w-3 h-3 opacity-70" />
         </a>
       </div>
