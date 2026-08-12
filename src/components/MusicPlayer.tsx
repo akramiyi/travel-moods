@@ -422,7 +422,7 @@ export const MusicPlayer: React.FC = () => {
             )}
             <div
               onClick={() => setShowTracklist(!showTracklist)}
-              className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 sm:border-4 border-[#5b4a40] cursor-pointer shadow-lg group z-10"
+              className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 sm:border-4 border-[#5b4a40] cursor-pointer shadow-lg group z-10"
             >
               <img
                 src={currentTrack.coverUrl}
@@ -472,7 +472,7 @@ export const MusicPlayer: React.FC = () => {
           </div>
 
           {/* RIGHT: Controls */}
-          <div className="flex items-center gap-1 sm:gap-5 flex-shrink-0 pr-1 sm:pr-4">
+          <div className="flex items-center gap-0.5 sm:gap-5 flex-shrink-0 pr-1 sm:pr-4">
             {!hasUserInteracted && (
               <button
                 onClick={handleStartAudio}
@@ -483,19 +483,19 @@ export const MusicPlayer: React.FC = () => {
               </button>
             )}
 
-            <button onClick={handlePrev} className="p-2 sm:p-0 text-white/70 hover:text-white transition-transform active:scale-90" title="Previous Song">
+            <button onClick={handlePrev} className="p-1 sm:p-0 text-white/70 hover:text-white transition-transform active:scale-90" title="Previous Song">
               <SkipBack className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
             </button>
 
             <button
               onClick={handlePlayPause}
-              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white text-black flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-transform mx-1 sm:mx-0 shrink-0"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-black flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-transform mx-1 sm:mx-0 shrink-0"
               title={isPlaying ? 'Pause' : 'Play'}
             >
               {isPlaying ? <Pause className="w-5 h-5 sm:w-6 sm:h-6 fill-current" /> : <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current ml-1" />}
             </button>
 
-            <button onClick={handleNext} className="p-2 sm:p-0 text-white/70 hover:text-white transition-transform active:scale-90" title="Next Song">
+            <button onClick={handleNext} className="p-1 sm:p-0 text-white/70 hover:text-white transition-transform active:scale-90" title="Next Song">
               <SkipForward className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
             </button>
             
