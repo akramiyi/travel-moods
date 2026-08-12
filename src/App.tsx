@@ -16,18 +16,49 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleGlobalKeyDown);
   }, []);
 
+  const mobileWallpapers = [
+    'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1513622470522-26c308f91c95?auto=format&fit=crop&w=800&q=80'
+  ];
+  
+  const [currentMobileBg, setCurrentMobileBg] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentMobileBg((prev) => (prev + 1) % mobileWallpapers.length);
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="relative min-h-screen bg-black text-white font-sans selection:bg-red-500 selection:text-white overflow-hidden">
       {/* Full-Screen Cinematic Travel Background Image */}
-      <div className="fixed inset-0 z-0">
+      <div className="fixed inset-0 z-0 bg-black">
+        {/* Desktop Wallpaper */}
         <img
           src={travelHeroImage}
           alt="Aesthetic Travel Moods Mountain & Jeep Atmosphere"
           referrerPolicy="no-referrer"
-          className="w-full h-full object-cover object-center scale-100 filter brightness-100 contrast-100"
+          className="hidden sm:block absolute inset-0 w-full h-full object-cover object-center scale-100 filter brightness-100 contrast-100"
         />
+        
+        {/* Mobile Wallpaper Slider */}
+        {mobileWallpapers.map((bg, idx) => (
+          <img
+            key={bg}
+            src={bg}
+            alt="Mobile Aesthetic Background"
+            referrerPolicy="no-referrer"
+            className={`sm:hidden absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
+              idx === currentMobileBg ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ))}
+
         {/* Soft Vignette Overlay for Title Legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40" />
       </div>
 
       {/* Top Header Navbar */}
