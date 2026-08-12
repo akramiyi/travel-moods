@@ -34,10 +34,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 px-2 sm:px-8 pt-8 pb-4 sm:py-4 flex items-center justify-between text-white font-sans pointer-events-auto bg-gradient-to-b from-black/60 to-transparent">
+    <header className="fixed top-0 left-0 right-0 z-40 px-2 sm:px-8 py-3 sm:py-4 flex items-center justify-between text-white font-sans pointer-events-auto bg-gradient-to-b from-black/60 to-transparent">
       {/* Top Left: Live Clock */}
-      <div className="flex items-center gap-3">
-        <span className="font-mono text-sm sm:text-base font-bold text-slate-200 tracking-wider">
+      <div className="flex items-center gap-1.5 sm:gap-3">
+        <span className="font-mono text-sm sm:text-base font-bold text-slate-200 tracking-wider whitespace-nowrap">
           {timeString || '2:07 pm'}
         </span>
         <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
@@ -52,7 +52,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         
         <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 shadow-lg text-[10px] sm:text-xs font-mono">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#10b981]" />
-          <span className="text-slate-300 font-medium">37 online</span>
+          <span className="text-slate-300 font-medium whitespace-nowrap">37 online</span>
         </div>
       </div>
 
