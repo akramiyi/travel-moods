@@ -3,6 +3,10 @@ import { Navbar } from './components/Navbar';
 import { MusicPlayer } from './components/MusicPlayer';
 import { retroAudio } from './utils/audio';
 import travelHeroImage from './assets/images/travel_jeep_mountain_1786438872225.jpg';
+import mobileBg1 from './assets/images/mobile_bg_1.jpg';
+import mobileBg2 from './assets/images/mobile_bg_2.jpg';
+import mobileBg3 from './assets/images/mobile_bg_3.jpg';
+import mobileBg4 from './assets/images/mobile_bg_4.jpg';
 
 export default function App() {
   // Mechanical typing sound on keydown
@@ -17,10 +21,10 @@ export default function App() {
   }, []);
 
   const mobileWallpapers = [
-    'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1513622470522-26c308f91c95?auto=format&fit=crop&w=800&q=80'
+    mobileBg1,
+    mobileBg2,
+    mobileBg3,
+    mobileBg4
   ];
   
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
