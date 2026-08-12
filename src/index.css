@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradient-text {
+  background-size: 200% auto;
+  animation: gradient 3s linear infinite;
+}
+
+@keyframes float-up {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  20% { opacity: 0.6; }
+  80% { opacity: 0.3; }
+  100% { transform: translateY(-150px) scale(0.5); opacity: 0; }
+}
+.animate-float-up {
+  animation: float-up linear infinite;
+}
+
+@keyframes aurora-blob {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(4vw, -4vh) scale(1.1); }
+  66% { transform: translate(-3vw, 3vh) scale(0.9); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+.animate-aurora {
+  animation: aurora-blob 15s ease-in-out infinite alternate;
+}

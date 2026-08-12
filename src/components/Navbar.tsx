@@ -1,0 +1,88 @@
+import React, { useState, useEffect } from 'react';
+import { Wifi, Radio, ExternalLink, Sparkles, Monitor, DollarSign, Volume2, VolumeX } from 'lucide-react';
+import { retroAudio } from '../utils/audio';
+
+interface NavbarProps {
+  onOpenMenu: () => void;
+  onOpenWorkstation: () => void;
+  onTriggerDialUp: () => void;
+  isConnectingDialUp: boolean;
+  soundEnabled: boolean;
+  setSoundEnabled: (val: boolean) => void;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({
+  onOpenMenu,
+  onOpenWorkstation,
+  onTriggerDialUp,
+  isConnectingDialUp,
+  soundEnabled,
+  setSoundEnabled,
+}) => {
+  const [timeString, setTimeString] = useState('');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setTimeString(
+        now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true }).toLowerCase()
+      );
+    };
+    updateTime();
+    const timer = setInterval(updateTime, 10000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-40 px-4 sm:px-8 py-4 flex items-center justify-between text-white font-sans pointer-events-auto bg-gradient-to-b from-black/60 to-transparent">
+      {/* Top Left: Live Clock */}
+      <div className="flex items-center gap-3">
+        <span className="font-mono text-sm sm:text-base font-bold text-slate-200 tracking-wider">
+          {timeString || '2:07 pm'}
+        </span>
+        <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+      </div>
+
+      {/* Top Center: Brand Logo & Online Status */}
+      <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-1.5 bg-cyan-950/60 backdrop-blur-md px-3 py-1 rounded-full border border-cyan-500/30 shadow-[0_0_12px_rgba(6,182,212,0.2)] text-[10px] sm:text-xs font-mono">
+          <Sparkles className="w-3 h-3 text-cyan-400 animate-pulse" />
+          <span className="font-bold text-cyan-300 tracking-wider">@akramiyi</span>
+        </div>
+        
+        <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 shadow-lg text-[10px] sm:text-xs font-mono">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#10b981]" />
+          <span className="text-slate-300 font-medium">37 online</span>
+        </div>
+      </div>
+
+      {/* Top Right: Spotify, YT Music & Cafe Controls */}
+      <div className="flex items-center gap-2 sm:gap-4 text-xs font-medium">
+        {/* Spotify & YT Music Links */}
+        <a
+          href="https://open.spotify.com/playlist/2AVjI8Z57bqMJVtU3V9X1Q"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-950/60 hover:bg-emerald-900/80 text-emerald-300 border border-emerald-500/30 transition-all hover:scale-105"
+        >
+          <span className="w-2 h-2 rounded-full bg-emerald-400" />
+          <span className="font-semibold hidden sm:inline">Spotify</span>
+          <ExternalLink className="w-3 h-3 opacity-70" />
+        </a>
+
+        {/* YouTube Music Link */}
+        <a
+          href="https://music.youtube.com/playlist?list=PLeatb7hupNV_AWUl_7ttbsKeCQh8tF5N4"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-950/60 hover:bg-red-900/80 text-red-300 border border-red-500/30 transition-all hover:scale-105"
+        >
+          <span className="w-2 h-2 rounded-full bg-red-400" />
+          <span className="font-semibold hidden sm:inline">YT Music</span>
+          <ExternalLink className="w-3 h-3 opacity-70" />
+        </a>
+      </div>
+    </header>
+  );
+};
+

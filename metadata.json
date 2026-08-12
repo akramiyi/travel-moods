@@ -1,0 +1,6 @@
+{
+  "name": "Travel Moods",
+  "description": "A scenic, nostalgic Indian road trip and travel moods music experience with classic travel playlists, live radio vibe, and cinematic sunset atmosphere.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
