@@ -23,14 +23,10 @@ export default function App() {
     'https://images.unsplash.com/photo-1513622470522-26c308f91c95?auto=format&fit=crop&w=800&q=80'
   ];
   
-  const [currentMobileBg, setCurrentMobileBg] = useState(0);
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentMobileBg((prev) => (prev + 1) % mobileWallpapers.length);
-    }, 10000);
-    return () => clearInterval(interval);
-  }, []);
+  // Change wallpaper every 2 songs
+  const currentMobileBg = Math.floor(currentTrackIndex / 2) % mobileWallpapers.length;
 
   return (
     <div className="relative min-h-screen bg-black text-white font-sans selection:bg-red-500 selection:text-white overflow-hidden">
@@ -87,7 +83,7 @@ export default function App() {
       </main>
 
       {/* Floating Glassmorphism Music Player */}
-      <MusicPlayer />
+      <MusicPlayer onTrackChange={(idx) => setCurrentTrackIndex(idx)} />
     </div>
   );
 }

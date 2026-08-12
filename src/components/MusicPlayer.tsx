@@ -60,7 +60,7 @@ const MagicDust = ({ isPlaying }: { isPlaying: boolean }) => {
   );
 };
 
-export const MusicPlayer: React.FC = () => {
+export const MusicPlayer: React.FC<MusicPlayerProps> = ({ onTrackChange }) => {
   const [currentPlaylist, setCurrentPlaylist] = useState(TRACK_LIST);
   const [currentPlaylistName, setCurrentPlaylistName] = useState('default');
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
@@ -84,6 +84,12 @@ export const MusicPlayer: React.FC = () => {
   const onStateChangeRef = useRef<any>(null);
   const handleKeyDownRef = useRef<any>(null);
   const currentTrack = currentPlaylist[currentTrackIndex] || currentPlaylist[0];
+
+  useEffect(() => {
+    if (onTrackChange) {
+      onTrackChange(currentTrackIndex);
+    }
+  }, [currentTrackIndex, onTrackChange]);
 
   onStateChangeRef.current = (e: any) => {
     if (e.data === window.YT.PlayerState.PLAYING) {
