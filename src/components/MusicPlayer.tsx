@@ -499,17 +499,17 @@ export const MusicPlayer: React.FC = () => {
               <SkipForward className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
             </button>
             
-            {/* Secondary Controls - Hidden on very small screens */}
-            <div className="hidden sm:flex items-center gap-3 pl-2 border-l border-white/20 ml-2">
+            {/* Secondary Controls */}
+            <div className="flex items-center gap-1 sm:gap-3 pl-1 sm:pl-2 border-l border-white/20 ml-1 sm:ml-2">
               <button 
                 onClick={() => setIsShuffle(!isShuffle)} 
-                className={`transition-transform active:scale-90 ${isShuffle ? 'text-white' : 'text-white/40 hover:text-white/70'}`} 
+                className={`hidden sm:block transition-transform active:scale-90 ${isShuffle ? 'text-white' : 'text-white/40 hover:text-white/70'}`} 
                 title="Shuffle"
               >
                 <Shuffle className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
 
-              <button onClick={() => setShowTracklist(!showTracklist)} className="text-white/40 hover:text-white/70 transition-transform active:scale-90" title="Toggle Playlist">
+              <button onClick={() => setShowTracklist(!showTracklist)} className="p-1 sm:p-0 text-white/70 hover:text-white transition-transform active:scale-90" title="Toggle Playlist">
                 <ListMusic className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
