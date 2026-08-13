@@ -94,7 +94,7 @@ export default function App() {
           <h1
             className="text-5xl sm:text-7xl md:text-8xl font-black tracking-normal text-white font-['Poppins',sans-serif] leading-none"
             style={isPlaying ? {
-              animation: 'textBeatPulse 0.5s ease-in-out infinite alternate',
+              animation: 'textBeatPulse 1.8s ease-in-out infinite alternate',
             } : {
               filter: 'drop-shadow(0 4px 25px rgba(0,0,0,0.9))',
             }}
@@ -104,7 +104,7 @@ export default function App() {
           <h2
             className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-red-500 font-['Poppins',sans-serif] leading-tight"
             style={isPlaying ? {
-              animation: 'textBeatPulseRed 0.5s ease-in-out infinite alternate',
+              animation: 'textBeatPulseRed 1.8s ease-in-out infinite alternate',
             } : {
               filter: 'drop-shadow(0 4px 25px rgba(220,38,38,0.9))',
             }}
