@@ -76,17 +76,6 @@ export default function App() {
 
         {/* Soft Vignette Overlay for Title Legibility */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40" />
-
-        {/* Beat Pulse Overlay - brightness flashes with music */}
-        {isPlaying && (
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'rgba(255,255,255,0)',
-              animation: 'beatPulse 0.5s ease-in-out infinite alternate',
-            }}
-          />
-        )}
       </div>
 
       {/* Top Header Navbar */}
@@ -102,10 +91,24 @@ export default function App() {
       {/* Top Right Sky Title Display - No background box, clean text positioned on the right */}
       <main className="relative z-10 min-h-screen flex flex-col justify-start items-end pt-20 sm:pt-24 px-6 sm:px-16 text-right select-none pointer-events-none">
         <div className="space-y-1 pointer-events-auto">
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-normal text-white drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)] font-['Poppins',sans-serif] leading-none">
+          <h1
+            className="text-5xl sm:text-7xl md:text-8xl font-black tracking-normal text-white font-['Poppins',sans-serif] leading-none"
+            style={isPlaying ? {
+              animation: 'textBeatPulse 0.5s ease-in-out infinite alternate',
+            } : {
+              filter: 'drop-shadow(0 4px 25px rgba(0,0,0,0.9))',
+            }}
+          >
             सफर
           </h1>
-          <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-red-500 drop-shadow-[0_4px_25px_rgba(220,38,38,0.9)] font-['Poppins',sans-serif] leading-tight">
+          <h2
+            className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-red-500 font-['Poppins',sans-serif] leading-tight"
+            style={isPlaying ? {
+              animation: 'textBeatPulseRed 0.5s ease-in-out infinite alternate',
+            } : {
+              filter: 'drop-shadow(0 4px 25px rgba(220,38,38,0.9))',
+            }}
+          >
             ट्रैवल मूड्स
           </h2>
           <p className="mt-2 text-xs sm:text-sm font-mono text-slate-100 tracking-widest uppercase opacity-95 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">

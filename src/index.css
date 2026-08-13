@@ -20,11 +20,16 @@
   animation: float-up linear infinite;
 }
 
-@keyframes beatPulse {
-  0% { background: rgba(255,255,255,0); filter: brightness(1); }
-  40% { background: rgba(255,255,255,0.06); filter: brightness(1.15); }
-  70% { background: rgba(255,255,255,0.10); filter: brightness(1.25); }
-  100% { background: rgba(255,255,255,0.04); filter: brightness(1.08); }
+@keyframes textBeatPulse {
+  0%   { filter: drop-shadow(0 0 8px rgba(255,255,255,0.3)) drop-shadow(0 4px 25px rgba(0,0,0,0.9)); text-shadow: none; }
+  50%  { filter: drop-shadow(0 0 30px rgba(255,255,255,0.9)) drop-shadow(0 0 60px rgba(200,220,255,0.6)); }
+  100% { filter: drop-shadow(0 0 12px rgba(255,255,255,0.5)) drop-shadow(0 4px 20px rgba(0,0,0,0.8)); }
+}
+
+@keyframes textBeatPulseRed {
+  0%   { filter: drop-shadow(0 0 8px rgba(220,38,38,0.5)) drop-shadow(0 4px 25px rgba(220,38,38,0.5)); }
+  50%  { filter: drop-shadow(0 0 35px rgba(255,80,80,1.0)) drop-shadow(0 0 70px rgba(255,50,50,0.8)); }
+  100% { filter: drop-shadow(0 0 15px rgba(220,38,38,0.7)) drop-shadow(0 4px 20px rgba(180,0,0,0.6)); }
 }
 
 @keyframes aurora-blob {
