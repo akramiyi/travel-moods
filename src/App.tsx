@@ -12,6 +12,12 @@ import mobileBg6 from './assets/images/mobile_bg_6.jpg';
 import mobileBg7 from './assets/images/mobile_bg_7.jpg';
 import mobileBg8 from './assets/images/mobile_bg_8.jpg';
 import mobileBg9 from './assets/images/mobile_bg_9.jpg';
+import mobileBg10 from './assets/images/mobile_bg_10.jpg';
+import mobileBg11 from './assets/images/mobile_bg_11.jpg';
+import mobileBg12 from './assets/images/mobile_bg_12.jpg';
+import mobileBg13 from './assets/images/mobile_bg_13.jpg';
+import mobileBg14 from './assets/images/mobile_bg_14.jpg';
+import mobileBg15 from './assets/images/mobile_bg_15.jpg';
 
 export default function App() {
   // Mechanical typing sound on keydown
@@ -26,15 +32,9 @@ export default function App() {
   }, []);
 
   const mobileWallpapers = [
-    mobileBg1,
-    mobileBg2,
-    mobileBg3,
-    mobileBg4,
-    mobileBg5,
-    mobileBg6,
-    mobileBg7,
-    mobileBg8,
-    mobileBg9
+    mobileBg1, mobileBg2, mobileBg3, mobileBg4, mobileBg5,
+    mobileBg6, mobileBg7, mobileBg8, mobileBg9, mobileBg10,
+    mobileBg11, mobileBg12, mobileBg13, mobileBg14, mobileBg15
   ];
   
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
