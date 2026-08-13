@@ -20,6 +20,13 @@
   animation: float-up linear infinite;
 }
 
+@keyframes beatPulse {
+  0% { background: rgba(255,255,255,0); filter: brightness(1); }
+  40% { background: rgba(255,255,255,0.06); filter: brightness(1.15); }
+  70% { background: rgba(255,255,255,0.10); filter: brightness(1.25); }
+  100% { background: rgba(255,255,255,0.04); filter: brightness(1.08); }
+}
+
 @keyframes aurora-blob {
   0% { transform: translate(0, 0) scale(1); }
   33% { transform: translate(4vw, -4vh) scale(1.1); }

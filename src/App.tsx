@@ -44,6 +44,7 @@ export default function App() {
   ];
   
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // Change wallpaper every 2 songs
   const currentMobileBg = Math.floor(currentTrackIndex / 2) % mobileWallpapers.length;
@@ -75,6 +76,17 @@ export default function App() {
 
         {/* Soft Vignette Overlay for Title Legibility */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40" />
+
+        {/* Beat Pulse Overlay - brightness flashes with music */}
+        {isPlaying && (
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'rgba(255,255,255,0)',
+              animation: 'beatPulse 0.5s ease-in-out infinite alternate',
+            }}
+          />
+        )}
       </div>
 
       {/* Top Header Navbar */}
@@ -103,7 +115,10 @@ export default function App() {
       </main>
 
       {/* Floating Glassmorphism Music Player */}
-      <MusicPlayer onTrackChange={(idx) => setCurrentTrackIndex(idx)} />
+      <MusicPlayer
+        onTrackChange={(idx) => setCurrentTrackIndex(idx)}
+        onPlayStateChange={(playing) => setIsPlaying(playing)}
+      />
     </div>
   );
 }
