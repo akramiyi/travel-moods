@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { MusicPlayer } from './components/MusicPlayer';
+import { InstallPrompt } from './components/InstallPrompt';
 import { retroAudio } from './utils/audio';
 import travelHeroImage from './assets/images/travel_jeep_mountain_1786438872225.jpg';
 import mobileBg1 from './assets/images/mobile_bg_1.jpg';
@@ -122,6 +123,9 @@ export default function App() {
         onTrackChange={(idx) => setCurrentTrackIndex(idx)}
         onPlayStateChange={(playing) => setIsPlaying(playing)}
       />
+
+      {/* PWA Install Prompt */}
+      <InstallPrompt />
     </div>
   );
 }

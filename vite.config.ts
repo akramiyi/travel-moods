@@ -43,6 +43,10 @@ const vercelApiPlugin = () => ({
             }
 
             const ai = new GoogleGenAI({ apiKey: geminiKey });
+            // Force the SDK to use our key instead of a globally injected GOOGLE_API_KEY
+            if (process.env.GOOGLE_API_KEY) {
+              process.env.GOOGLE_API_KEY = geminiKey;
+            }
             let prompt = `I want to search YouTube for a playlist of songs that fit the mood: "${mood}". `;
             if (place) prompt += `The vibe should also match the location: "${place}". `;
             prompt += `Provide ONLY a single, highly effective YouTube search query string (e.g. "nostalgic 90s Bollywood road trip songs"). Do not include quotes. Keep it under 50 chars.`;
@@ -88,9 +92,39 @@ const vercelApiPlugin = () => ({
   }
 });
 
+import { VitePWA } from 'vite-plugin-pwa';
+
 export default defineConfig(() => {
   return {
-    plugins: [react(), tailwindcss(), vercelApiPlugin()],
+    plugins: [
+      react(), 
+      tailwindcss(), 
+      vercelApiPlugin(),
+      VitePWA({
+        registerType: 'autoUpdate',
+        includeAssets: ['pwa-192x192.png', 'pwa-512x512.png'],
+        manifest: {
+          name: 'Travel Moods',
+          short_name: 'Travel Moods',
+          description: 'AI-curated travel music for every mood',
+          theme_color: '#000000',
+          background_color: '#000000',
+          display: 'standalone',
+          icons: [
+            {
+              src: 'pwa-192x192.png',
+              sizes: '192x192',
+              type: 'image/png'
+            },
+            {
+              src: 'pwa-512x512.png',
+              sizes: '512x512',
+              type: 'image/png'
+            }
+          ]
+        }
+      })
+    ],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

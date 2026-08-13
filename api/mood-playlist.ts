@@ -37,6 +37,11 @@ export default async function handler(req: any, res: any) {
         // 2. Gemini Query Generation
         const ai = new GoogleGenAI({ apiKey: geminiKey });
         
+        // Force the SDK to use our key instead of a globally injected GOOGLE_API_KEY
+        if (process.env.GOOGLE_API_KEY) {
+            process.env.GOOGLE_API_KEY = geminiKey;
+        }
+
         let prompt = `I want to search YouTube for a playlist of songs that fit the mood: "${mood}". `;
         if (place) {
             prompt += `The vibe should also match the location: "${place}". `;
