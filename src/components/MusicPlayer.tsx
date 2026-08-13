@@ -3,6 +3,8 @@ import { TRACK_LIST } from '../data/cyberData';
 import { Play, Pause, SkipBack, SkipForward, Disc, ListMusic, Volume2, X, Shuffle, Timer, Minimize2, Maximize2, Sparkles } from 'lucide-react';
 import { retroAudio } from '../utils/audio';
 import { xaliPlaylist } from '../data/xaliPlaylist';
+import { MoodMixSelector } from './MoodMixSelector';
+import { Track } from '../types';
 
 const xaliTracks = xaliPlaylist.map((t: any, idx: number) => ({
   id: `xali-${idx}`,
@@ -141,6 +143,10 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ onTrackChange, onPlayS
               onStateChangeRef.current(e);
             }
           },
+          onError: (e: any) => {
+            console.error('[YouTube Player Error]', e.data);
+            goToTrack('next', true); // Auto-skip broken tracks
+          }
         },
       });
     }
@@ -264,7 +270,18 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ onTrackChange, onPlayS
     }
   };
 
-  const handlePlaylistSwitch = (playlistName: string) => {
+  const handlePlaylistSwitch = (playlistName: string, customTracks?: Track[]) => {
+    if (customTracks) {
+      setCurrentPlaylistName(playlistName);
+      setCurrentPlaylist(customTracks);
+      setCurrentTrackIndex(0);
+      if (playerRef.current && playerReady) {
+        playerRef.current.loadVideoById(customTracks[0].youtubeId);
+        setIsPlaying(true);
+      }
+      return;
+    }
+
     setCurrentPlaylistName(playlistName);
     const newPlaylist = playlistName === 'xali' ? xaliTracks : TRACK_LIST;
     setCurrentPlaylist(newPlaylist);
@@ -398,7 +415,12 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ onTrackChange, onPlayS
             </button>
           </div>
 
-          <div className="space-y-1.5 overflow-y-auto pr-1">
+          <MoodMixSelector 
+            onPlaylistGenerated={(tracks, moodName) => handlePlaylistSwitch(moodName, tracks)}
+            onFallback={() => handlePlaylistSwitch('default')}
+          />
+
+          <div className="space-y-1.5 overflow-y-auto pr-1 mt-2">
             {currentPlaylist.map((t, idx) => (
               <div
                 key={t.id}
