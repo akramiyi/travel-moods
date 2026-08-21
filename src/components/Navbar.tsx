@@ -2,23 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Wifi, Radio, ExternalLink, Sparkles, Monitor, DollarSign, Volume2, VolumeX } from 'lucide-react';
 import { retroAudio } from '../utils/audio';
 
-interface NavbarProps {
-  onOpenMenu: () => void;
-  onOpenWorkstation: () => void;
-  onTriggerDialUp: () => void;
-  isConnectingDialUp: boolean;
-  soundEnabled: boolean;
-  setSoundEnabled: (val: boolean) => void;
-}
+interface NavbarProps {}
 
-export const Navbar: React.FC<NavbarProps> = ({
-  onOpenMenu,
-  onOpenWorkstation,
-  onTriggerDialUp,
-  isConnectingDialUp,
-  soundEnabled,
-  setSoundEnabled,
-}) => {
+export const Navbar: React.FC<NavbarProps> = () => {
   const [timeString, setTimeString] = useState('');
 
   useEffect(() => {

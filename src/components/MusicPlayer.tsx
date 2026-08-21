@@ -234,8 +234,10 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ onTrackChange, onPlayS
       const playlist = currentPlaylist;
       
       if (direction === 'next') {
-        if (isShuffle) {
-          nextIdx = Math.floor(Math.random() * playlist.length);
+        if (isShuffle && playlist.length > 1) {
+          do {
+            nextIdx = Math.floor(Math.random() * playlist.length);
+          } while (nextIdx === prev);
         } else {
           nextIdx = (prev + 1) % playlist.length;
         }

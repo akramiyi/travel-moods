@@ -19,6 +19,7 @@ export const MoodMixSelector: React.FC<MoodMixSelectorProps> = ({ onPlaylistGene
   const [isLoading, setIsLoading] = useState(false);
   const [activeMood, setActiveMood] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [place, setPlace] = useState('');
 
   const handleMoodSelect = async (moodId: string, moodLabel: string) => {
     setIsLoading(true);
@@ -29,7 +30,7 @@ export const MoodMixSelector: React.FC<MoodMixSelectorProps> = ({ onPlaylistGene
       const response = await fetch('/api/mood-playlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mood: moodLabel })
+        body: JSON.stringify({ mood: moodLabel, place: place.trim() })
       });
 
       if (!response.ok) {
@@ -37,7 +38,7 @@ export const MoodMixSelector: React.FC<MoodMixSelectorProps> = ({ onPlaylistGene
       }
 
       const data = await response.json();
-      
+
       if (data.tracks && data.tracks.length > 0) {
         onPlaylistGenerated(data.tracks, `Mood Mix: ${moodLabel}`);
       } else {
@@ -45,7 +46,7 @@ export const MoodMixSelector: React.FC<MoodMixSelectorProps> = ({ onPlaylistGene
       }
     } catch (err) {
       console.error(err);
-      setErrorMsg('Mood Mix unavailable. Playing curated hits.');
+      setErrorMsg('Mood Mix unavailable soory . Playing curated hit .');
       onFallback();
       setTimeout(() => setErrorMsg(null), 3000);
     } finally {
@@ -62,18 +63,26 @@ export const MoodMixSelector: React.FC<MoodMixSelectorProps> = ({ onPlaylistGene
         </h3>
         {isLoading && <Loader2 size={16} className="text-red-400 animate-spin" />}
       </div>
-      
+
+      <input
+        type="text"
+        placeholder="Where are you? (Optional)"
+        value={place}
+        onChange={(e) => setPlace(e.target.value)}
+        className="w-full bg-black/40 border border-white/10 rounded-lg px-3 py-1.5 text-xs text-white placeholder-white/40 focus:outline-none focus:border-red-500/50 transition-colors mb-1"
+        disabled={isLoading}
+      />
+
       <div className="flex flex-wrap gap-2">
         {MOOD_PRESETS.map((mood) => (
           <button
             key={mood.id}
             onClick={() => handleMoodSelect(mood.id, mood.label)}
             disabled={isLoading}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
-              activeMood === mood.id 
-                ? 'bg-red-500/80 text-white shadow-[0_0_10px_rgba(239,68,68,0.5)]' 
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${activeMood === mood.id
+                ? 'bg-red-500/80 text-white shadow-[0_0_10px_rgba(239,68,68,0.5)]'
                 : 'bg-white/10 text-slate-300 hover:bg-white/20'
-            } disabled:opacity-50 disabled:cursor-not-allowed`}
+              } disabled:opacity-50 disabled:cursor-not-allowed`}
           >
             {mood.icon}
             {mood.label}

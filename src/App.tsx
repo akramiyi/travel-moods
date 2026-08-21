@@ -26,16 +26,7 @@ import mobileBg19 from './assets/images/mobile_bg_19.jpg';
 import mobileBg20 from './assets/images/mobile_bg_20.jpg';
 
 export default function App() {
-  // Mechanical typing sound on keydown
-  useEffect(() => {
-    const handleGlobalKeyDown = (e: KeyboardEvent) => {
-      if (['INPUT', 'TEXTAREA'].includes((document.activeElement?.tagName || ''))) return;
-      retroAudio.playKeyClick();
-    };
 
-    window.addEventListener('keydown', handleGlobalKeyDown);
-    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
-  }, []);
 
   const mobileWallpapers = [
     mobileBg1, mobileBg2, mobileBg3, mobileBg4, mobileBg5,
@@ -46,48 +37,56 @@ export default function App() {
   
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 640 : false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Change wallpaper every 2 songs
   const currentMobileBg = Math.floor(currentTrackIndex / 2) % mobileWallpapers.length;
+  const nextMobileBg = (currentMobileBg + 1) % mobileWallpapers.length;
 
   return (
     <div className="relative min-h-screen bg-black text-white font-sans selection:bg-red-500 selection:text-white overflow-hidden">
       {/* Full-Screen Cinematic Travel Background Image */}
       <div className="fixed inset-0 z-0 bg-black">
         {/* Desktop Wallpaper */}
-        <img
-          src={travelHeroImage}
-          alt="Aesthetic Travel Moods Mountain & Jeep Atmosphere"
-          referrerPolicy="no-referrer"
-          className="hidden sm:block absolute inset-0 w-full h-full object-cover object-center scale-100 filter brightness-100 contrast-100"
-        />
+        {!isMobile && (
+          <img
+            src={travelHeroImage}
+            alt="Aesthetic Travel Moods Mountain & Jeep Atmosphere"
+            referrerPolicy="no-referrer"
+            loading="lazy"
+            className="hidden sm:block absolute inset-0 w-full h-full object-cover object-center scale-100 filter brightness-100 contrast-100"
+          />
+        )}
         
         {/* Mobile Wallpaper Slider */}
-        {mobileWallpapers.map((bg, idx) => (
-          <img
-            key={bg}
-            src={bg}
-            alt="Mobile Aesthetic Background"
-            referrerPolicy="no-referrer"
-            className={`sm:hidden absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
-              idx === currentMobileBg ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
-        ))}
+        {isMobile && mobileWallpapers.map((bg, idx) => {
+          if (idx !== currentMobileBg && idx !== nextMobileBg) return null;
+          return (
+            <img
+              key={bg}
+              src={bg}
+              alt="Mobile Aesthetic Background"
+              referrerPolicy="no-referrer"
+              loading={idx === currentMobileBg ? "eager" : "lazy"}
+              className={`sm:hidden absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
+                idx === currentMobileBg ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          );
+        })}
 
         {/* Soft Vignette Overlay for Title Legibility */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40" />
       </div>
 
       {/* Top Header Navbar */}
-      <Navbar
-        onOpenMenu={() => {}}
-        onOpenWorkstation={() => {}}
-        onTriggerDialUp={() => {}}
-        isConnectingDialUp={false}
-        soundEnabled={true}
-        setSoundEnabled={() => {}}
-      />
+      <Navbar />
 
       {/* Top Right Sky Title Display - No background box, clean text positioned on the right */}
       <main className="relative z-10 min-h-screen flex flex-col justify-start items-end pt-20 sm:pt-24 px-6 sm:px-16 text-right select-none pointer-events-none">

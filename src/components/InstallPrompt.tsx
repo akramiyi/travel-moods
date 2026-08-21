@@ -18,6 +18,11 @@ export const InstallPrompt: React.FC = () => {
     const handleBeforeInstallPrompt = (e: Event) => {
       // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
+      
+      if (localStorage.getItem('pwa-prompt-dismissed') === 'true') {
+        return;
+      }
+      
       // Stash the event so it can be triggered later.
       setDeferredPrompt(e as BeforeInstallPromptEvent);
       // Update UI notify the user they can install the PWA
@@ -71,7 +76,10 @@ export const InstallPrompt: React.FC = () => {
           </button>
           
           <button
-            onClick={() => setIsVisible(false)}
+            onClick={() => {
+              setIsVisible(false);
+              localStorage.setItem('pwa-prompt-dismissed', 'true');
+            }}
             className="p-1.5 text-slate-400 hover:text-white transition-colors rounded-full hover:bg-white/10"
           >
             <X className="w-4 h-4" />

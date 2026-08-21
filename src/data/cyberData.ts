@@ -611,17 +611,7 @@ export const TRACK_LIST: Track[] = [
     "coverUrl": "https://images.unsplash.com/photo-1476514525535-ce74f45814d0?w=300&auto=format&fit=crop&q=80",
     "lyricsSnippet": "Chala chal rahi... dil mein utar gaya..."
   },
-  {
-    "id": "56",
-    "youtubeId": "5dWbn_qER3s",
-    "title": "Tere Dar Par Sanam",
-    "artist": "Male Version",
-    "album": "Travel Moods Hits",
-    "year": "Retro",
-    "duration": "6:29",
-    "coverUrl": "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=300&auto=format&fit=crop&q=80",
-    "lyricsSnippet": "Chala chal rahi... dil mein utar gaya..."
-  },
+
   {
     "id": "57",
     "youtubeId": "s4slgbuwOfw",
